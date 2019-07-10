@@ -2,6 +2,7 @@
 
 import os
 from flask import Flask, render_template, request, url_for
+from bikeparking.controller import *
 
 def print_settings(config):
     print('===================================================================')
@@ -25,8 +26,6 @@ def url_for_other_page(page):
 
 def create_app(config_filepath='resource/config.cfg'):
     bikeparking_app = Flask(__name__)
-
-    from bikeparking.controller import *
 
     from bikeparking.bikeparking_blueprint import bikeparking
     bikeparking_app.register_blueprint(bikeparking)
