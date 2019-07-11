@@ -28,6 +28,17 @@ def url_for_other_page(page):
 def create_app(config_filepath='resource/config.cfg'):
     bikeparking_app = Flask(__name__)
 
+    from bikeparking.bikeparking_config import BikeParkingConfig
+    bikeparking_app.config.from_object(BikeParkingConfig)
+    bikeparking_app.config.from_pyfile(config_filepath, silent=True)
+    print_settings(bikeparking_app.config.items())
+
+    db_address = bikeparking_app.config['DB_ADDRESS']
+    db_port = bikeparking_app.config['DB_PORT']
+    db_id = bikeparking_app.config['DB_ID']
+    db_password = bikeparking_app.config['DB_PASSWORD']
+    db_name = bikeparking_app.config['DB_NAME']
+
     from bikeparking.database import DBManager
     DBManager.init(db_address, db_port, db_id, db_password, db_name)
     DBManager.init_db()
