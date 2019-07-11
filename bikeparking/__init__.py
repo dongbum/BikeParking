@@ -7,7 +7,7 @@ from bikeparking.model import *
 
 def print_settings(config):
     print('===================================================================')
-    print('settings for bike geometry')
+    print('settings for bikeparking')
     print('===================================================================')
     for key, value in config:
         print('%s=%s' % (key, value))

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
 
 from bikeparking.model import Base
 
 class Parking(Base):
     __tablename__ = 'parking'
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     no = Column(Integer, primary_key=True)
     name = Column(String(1024), unique=False)
