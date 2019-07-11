@@ -33,12 +33,22 @@ def create_app(config_filepath='resource/config.cfg'):
     bikeparking_app.config.from_pyfile(config_filepath, silent=True)
     print_settings(bikeparking_app.config.items())
 
-    db_address = bikeparking_app.config['DB_ADDRESS']
-    db_port = bikeparking_app.config['DB_PORT']
-    db_id = bikeparking_app.config['DB_ID']
-    db_password = bikeparking_app.config['DB_PASSWORD']
-    db_name = bikeparking_app.config['DB_NAME']
+    try:
+        db_address = bikeparking_app.config['DB_ADDRESS']
+        db_port = bikeparking_app.config['DB_PORT']
+        db_id = bikeparking_app.config['DB_ID']
+        db_password = bikeparking_app.config['DB_PASSWORD']
+        db_name = bikeparking_app.config['DB_NAME']
+    except ValueError:
+        print("Cannot found DB connection info.")
+        exit(1)
 
+    # 로그 초기화
+    from bikeparking.bikeparking_logger import Log
+    log_filepath = os.path.join(bikeparking_app.root_path, bikeparking_app.config['LOG_FILE_PATH'])
+    Log.init(log_filepath=log_filepath)
+
+    # 데이터베이스 처리
     from bikeparking.database import DBManager
     DBManager.init(db_address, db_port, db_id, db_password, db_name)
     DBManager.init_db()
