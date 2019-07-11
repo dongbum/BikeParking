@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <title>Map Page</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a01bc3d3ae8d3c0a4f5a9ed4d4c0c97a"></script>
+
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    html, body {
+        height: 100%;
+    }
+    </style>
 </head>
 <body>
-    Map Page
-
-    <div id="map" style="width:500px;height:400px;"></div>
+    <div id="map" style="width:100%;height:100%;"></div>
     <script>
 		var container = document.getElementById('map');
 		var options = {
