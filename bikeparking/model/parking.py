@@ -9,6 +9,7 @@ class Parking(Base):
     __tablename__ = 'parking'
 
     no = Column(Integer, primary_key=True)
+    name = Column(String(1024), unique=False)
     address = Column(String(1024), unique=False)
     operating_time = Column(String(1024), unique=False)
     operating_agency = Column(String(1024), unique=False)
@@ -18,8 +19,9 @@ class Parking(Base):
     url = Column(String(1024), unique=False)
     phone = Column(String(1024), unique=False)
 
-    def __init__(self, no, address, operating_time, operating_agency, parking_count, parking_type, charge, url, phone):
+    def __init__(self, no, name, address, operating_time, operating_agency, parking_count, parking_type, charge, url, phone):
         self.no = no
+        self.name = name
         self.address = address
         self.operating_time = operating_time
         self.operating_agency = operating_agency
@@ -30,4 +32,4 @@ class Parking(Base):
         self.phone = phone
 
     def __repr__(self):
-        return '<Address %r>' & (self.address)
+        return '<name %r Address %r>' & (self.name, self.address)

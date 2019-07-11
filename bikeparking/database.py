@@ -10,8 +10,8 @@ class DBManager:
     __session = None
 
     @staticmethod
-    def init(db_url, db_log_flag=True):
-        DBManager.__engine = create_engine(db_url, echo=db_log_flag)
+    def init(db_address, db_port, db_id, db_password, db_name, db_log_flag=True):
+        DBManager.__engine = create_engine('mysql://' + db_id + ':' + db_password + '@' + db_address + ':' + db_port + '/' + db_name, echo=db_log_flag, convert_unicode=True)
         DBManager.__session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=DBManager.__engine))
         global dao
         dao = DBManager.__session
