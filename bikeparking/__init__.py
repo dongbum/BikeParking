@@ -43,6 +43,12 @@ def create_app(config_filepath='resource/config.cfg'):
         print("Cannot found DB connection info.")
         exit(1)
 
+    # 로그 초기화
+    from bikeparking.bikeparking_logger import Log
+    log_filepath = os.path.join(bikeparking_app.root_path, bikeparking_app.config['LOG_FILE_PATH'])
+    Log.init(log_filepath=log_filepath)
+
+    # 데이터베이스 처리
     from bikeparking.database import DBManager
     DBManager.init(db_address, db_port, db_id, db_password, db_name)
     DBManager.init_db()
