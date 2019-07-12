@@ -1,5 +1,4 @@
 Flask
 Jinja2
 werkzeug
-mysql
-SQLAlchemy
+PyMySQL

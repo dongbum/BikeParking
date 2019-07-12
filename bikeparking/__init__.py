@@ -49,9 +49,6 @@ def create_app(config_filepath='resource/config.cfg'):
     Log.init(log_filepath=log_filepath)
 
     # 데이터베이스 처리
-    from bikeparking.database import DBManager
-    DBManager.init(db_address, db_port, db_id, db_password, db_name)
-    DBManager.init_db()
 
     from bikeparking.bikeparking_blueprint import bikeparking
     bikeparking_app.register_blueprint(bikeparking)
