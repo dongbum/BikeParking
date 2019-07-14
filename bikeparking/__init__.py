@@ -47,7 +47,7 @@ def create_app():
 
     # 로그 초기화
     from bikeparking.bikeparking_logger import Log
-    log_filepath = os.path.join(bikeparking_app.root_path, bikeparking_app.config['LOG_FILE_PATH'])
+    log_filepath = os.path.join(bikeparking_app.instance_path, bikeparking_app.config['LOG_FILE_PATH'])
     Log.init(log_filepath=log_filepath)
 
     # 데이터베이스 처리
