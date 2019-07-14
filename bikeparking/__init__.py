@@ -25,12 +25,14 @@ def url_for_other_page(page):
     args['page'] = page
     return url_for(request.endpoint, **args)
 
-def create_app(config_filepath='resource/config.cfg'):
-    bikeparking_app = Flask(__name__)
+def create_app():
+    bikeparking_app = Flask(__name__, instance_relative_config=True)
+
+    print('instance_path:[%s]' % bikeparking_app.instance_path)
 
     from bikeparking.bikeparking_config import BikeParkingConfig
     bikeparking_app.config.from_object(BikeParkingConfig)
-    bikeparking_app.config.from_pyfile(config_filepath, silent=True)
+    bikeparking_app.config.from_pyfile('config.cfg', silent=True)
     print_settings(bikeparking_app.config.items())
 
     try:
