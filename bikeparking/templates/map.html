@@ -59,27 +59,40 @@
 		var map = new kakao.maps.Map(container, options);   // 지도 생성
 
 		// 마커 배열
+		/*
 		var positions = [
 		    {
 		        title: '카카오',
-		        content: '<div>카카오<div>',
+		        content: '<div>카카오</div>',
 		        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
 		    },
 		    {
                 title: '생태연못',
-                content: '<div>생태연못<div>',
+                content: '<div>생태연못</div>',
                 latlng: new kakao.maps.LatLng(33.450936, 126.569477)
             },
             {
                 title: '텃밭',
-                content: '<div>텃밭<div>',
+                content: '<div>텃밭</div>',
                 latlng: new kakao.maps.LatLng(33.450879, 126.569940)
             },
             {
                 title: '근린공원',
-                content: '<div>근린공원<div>',
+                content: '<div>근린공원</div>',
                 latlng: new kakao.maps.LatLng(33.451393, 126.570738)
             }
+		];
+		*/
+
+		// 마커 배열
+		var positions = [
+            {% for marker_data in data %}
+                {
+                    title: '{{ marker_data[1] }}',
+                    content: '<div>{{ marker_data[1] }}</div>',
+                    latlng: new kakao.maps.LatLng({{ marker_data[2] }}, {{ marker_data[3] }})
+                },
+            {% endfor %}
 		];
 
 		var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";    // 마커 이미지
